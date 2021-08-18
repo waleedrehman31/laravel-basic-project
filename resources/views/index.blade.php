@@ -28,7 +28,7 @@
                                 Sale
                             </div>
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
+                            <img class="card-img-top" src="{{url("storage/app/public/".$product->photo)}}" alt="{{ $product->name }}"/>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="">
@@ -46,6 +46,7 @@
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View
                                         options</a>
                                 </div>
+                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                             </div>
                         </div>
                     </div>

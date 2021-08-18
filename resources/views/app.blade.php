@@ -23,31 +23,47 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('services') }}">Services</a></li>
             </ul>
-            <form class="d-flex ">
-                <a href='' class="btn btn-outline-light me-2" type="submit">
-                    login
-                </a>
-                <a class="btn btn-outline-light" type="submit">
-                    Cart
-                </a>
-            </form>
+            <div class="d-flex ">
+                @guest
+                    <a href='{{ route('login') }}' class="btn btn-outline-light me-2">
+                        login
+                    </a>
+                @endguest
+                @auth
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('products.index') }}">Product</a>
+                        </li>
+                    </ul>
+                    <a href='#' onclick="document.getElementById('logout-form').submit()"
+                       class="btn btn-outline-light me-2">
+                        logout
+                    </a>
+                    <form action="{{ route('logout')}}" method="POST" id="logout-form">
+                        @csrf
+                    </form>
+
+                @endauth
+            </div>
         </div>
     </div>
 </nav>
 
 
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
 
-            @yield('content')
+        @yield('content')
 
-        </div>
     </div>
+</div>
 
 <!-- Footer-->
 <footer class="py-5 bg-dark">
